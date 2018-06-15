@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Second Punic War</title>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+    <link rel="shortcut icon" href="icons/map.png" />
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cartodb-libs.global.ssl.fastly.net/cartodb.js/v3/3.15/themes/css/cartodb.css" />
+  <link rel="stylesheet" href="semantic/semantic.css" />
+    <link rel="stylesheet" href="css/style.css" />
+
+    <!-- for leaflet sidebar -->
+    <link rel="stylesheet" href="css/leaflet-sidebar.css" />
+
+    <!-- leaflet style
+    <script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js"></script>
+<link href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css" rel="stylesheet">-->
+<script src="javascript/jquery.js"></script>
+
+<!-- lodash for webpack -->
+ <script src="https://unpkg.com/lodash@4.16.6"></script>
+
+  </head>
+  <body>
+
+<!-- takes index so that webpack works
+<script src="./src/index.js"></script>
+-->
+
+  <!-- info modal template -->
+  <div class="ui modal info">
+  <i class="close icon" onclick="toggleInfoModal()"></i>
+  <div class="header modalHeader">
+    Profile Picture
+  </div>
+  <div class="image content">
+    <div class="ui medium image">
+      <img class="modalImage" src="images/hannibal.jpg">
+    </div>
+    <div class="description modalDescription">
+      <div class="ui header">We've auto-chosen a profile image for you.</div>
+      <p>We've grabbed the following image from the <a href="https://www.gravatar.com" target="_blank">gravatar</a> image associated with your registered e-mail address.</p>
+      <p>Is it okay to use this photo?</p>
+    </div>
+  </div>
+  <div class="actions">
+
+    <div class="ui positive right labeled icon button">
+      Finished
+      <i class="checkmark icon"></i>
+    </div>
+  </div>
+</div>
+
+
+  <!-- map -->
+
+<!-- modal -->
+
+  <div class="ui basic modal">
+    <div class="ui icon header">
+      <i class="map icon"></i>
+      Go to War With Hannibal
+    </div>
+    <div class="content">
+      <p class="modalContent">
+        This is the story of how Hannibal Barca, one of the greatest generals in all of history, brought a war to the Romans unlike any they had ever seen before. He took elephants over the Alps, he laid ambushes, he burned down farms, he turned their allies against them.
+      </p>
+      <p class="modalContent">
+        At the battles of the Trebia, Lake Trasimene, and Cannae, Hannibal Barca slaughtered well over one hundred thousand Roman soldiers. After each battle he made sure to take their weapons and armor, increasing the effectiveness of his own troops.
+      </p>
+      <p>
+        The Romans only defeated Hannibal when they discovered a military genius of their own: that of Scipio Africanus, a young man hated by the upper classes for his long hair and confident air but loved by the lower classes for his consistent compassion and equally consistent ability to win battles.
+      </p>
+      <p class="modalContent">
+        In this website you will go on campaign with Hannibal Barca and watch the war unfold in front of your eyes. You will see every clever ruse, every crushing defeat, every ingenious victory, and even the jokes they told along the way.
+      </p>
+    </div>
+    <div class="actions">
+
+      <div class="ui green ok inverted button">
+
+        Begin
+        <i class="right arrow icon"></i>
+      </div>
+    </div>
+  </div>
+
+<!-- end of modal -->
+
+<!-- sidebar -->
+<div id="sidebar" class="leaflet-sidebar collapsed">
+      <!-- Nav tabs -->
+      <div class="leaflet-sidebar-tabs">
+          <ul role="tablist">
+              <li><a href="#home" role="tab"><i class="fa fa-bars active"></i></a></li>
+              <li><a href="#profile" role="tab"><i class="fa fa-user"></i></a></li>
+              <li class="disabled"><a href="#messages" role="tab"><i class="fa fa-envelope"></i></a></li>
+              <li><a onclick="alert('i am a JS button')"><i class="fa fa-info"></i></a></li>
+          </ul>
+
+          <ul role="tablist">
+              <li><a href="https://github.com/nickpeihl/leaflet-sidebar-v2"><i class="fa fa-github"></i></a></li>
+          </ul>
+      </div>
+
+      <!-- Tab panes -->
+      <div class="leaflet-sidebar-content">
+          <div class="leaflet-sidebar-pane" id="home">
+              <h1 class="leaflet-sidebar-header">
+                  Menu
+                  <span class="leaflet-sidebar-close"><i class="fa fa-caret-left"></i></span>
+              </h1>
+
+<br/> <br/>
+              <!-- accordian -->
+              <div class="ui styled accordion">
+                <div class="title">
+                  <i class="dropdown icon"></i>
+                  What is a dog?
+                </div>
+                <div class="content">
+                  <p class="transition hidden">A dog is a type of domesticated animal. Known for its loyalty and faithfulness, it can be found as a welcome guest in many households across the world.</p>
+                </div>
+                <div class="title active">
+                  <i class="dropdown icon"></i>
+                  What kinds of dogs are there?
+                </div>
+                <div class="content active">
+                  <p class="transition visible">There are many breeds of dogs. Each breed varies in size and temperament. Owners often select a breed of dog that they find to be compatible with their own lifestyle and desires from a companion.</p>
+                </div>
+                <div class="title">
+                  <i class="dropdown icon"></i>
+                  How do you acquire a dog?
+                </div>
+                <div class="content">
+                  <p>Three common ways for a prospective owner to acquire a dog is from pet shops, private owners, or shelters.</p>
+                  <p>A pet shop may be the most convenient way to buy a dog. Buying a dog from a private owner allows you to assess the pedigree and upbringing of your dog before choosing to take it home. Lastly, finding your dog from a shelter, helps give a good home to a dog who may not find one so readily.</p>
+                </div>
+              </div>
+      </div>
+
+          <div class="leaflet-sidebar-pane" id="profile">
+              <h1 class="leaflet-sidebar-header">Profile<span class="leaflet-sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
+          </div>
+
+          <div class="leaflet-sidebar-pane" id="messages">
+              <h1 class="leaflet-sidebar-header">Messages<span class="leaflet-sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
+          </div>
+      </div>
+  </div>
+
+
+
+     <div id="map"> </div>
+  <!--   <script src="https://unpkg.com/leaflet@1.0.2/dist/leaflet.js"></script>
+      <script src="https://unpkg.com/sjc-leaflet-map"></script>
+      <script src="https://unpkg.com/sjc-leaflet-basemaps"></script>
+      <script src="https://unpkg.com/sjc-leaflet-sidebar"></script>
+    -->
+
+
+<div class="ui grid equal width forMap">
+
+  <div class="column forMap">
+<center>
+    <button class="ui left labeled icon button forMap hidden" title='Click here to go back to the previous event!' data-content="This goes back!" onclick="previous()" id="back">
+      <i class="left arrow icon"></i>
+  <p>  Back </p>
+    </button>
+</center>
+  </div>
+  <div class="column forMap">
+
+    <div class="ui teal progress forMap" >
+      <div class="bar"></div>
+    </div>
+
+  </div>
+  <div class="column forMap">
+<center>
+    <button class="ui right labeled icon button forMap" title='This goes forward!' onclick="next()" id="forward">
+      <i class="right arrow icon"></i>
+    <p id="forwardText">  Start </p>
+    </button>
+</center>
+  </div>
+
+</div>
+
+
+    <!-- include cartodb.js library -->
+    <script src="javascript/carto.js"></script>
+
+    <!-- sidebar -->
+    <script src="javascript/leaflet-sidebar.js"></script>
+
+<script src="semantic/semantic.js"></script>
+<script src="javascript/glossary.js"></script>
+<script src="javascript/main.js"></script>
+  </body>
+</html>
