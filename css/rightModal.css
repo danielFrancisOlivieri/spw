@@ -1,0 +1,8 @@
+.glossary {
+   position: absolute;
+   right: 5px;
+   left: 600px;
+   z-index: 10040;
+   overflow: auto;
+   overflow-y: auto;
+}
