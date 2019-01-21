@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Second Punic War</title>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+    <link rel="shortcut icon" href="icons/map.png" />
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cartodb-libs.global.ssl.fastly.net/cartodb.js/v3/3.15/themes/css/cartodb.css" />
+  <link rel="stylesheet" href="semantic/semantic.css" />
+    <link rel="stylesheet" href="css/style.css" />
+
+    <!-- for leaflet sidebar -->
+    <link rel="stylesheet" href="css/leaflet-sidebar.css" />
+    <link rel="stylesheet" href="css/rightModal.css" />
+
+    <!-- leaflet style
+    <script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js"></script>
+<link href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css" rel="stylesheet">-->
+<script src="javascript/jquery.js"></script>
+
+<!-- lodash for webpack -->
+ <script src="https://unpkg.com/lodash@4.16.6"></script>
+
+  </head>
+
+<!-- Image modal box-->
+<!-- Trigger the Modal -->
+
+<div class="ui basic modal image">
+    <div class="content">
+      <div class="ui large image">
+          <img class="modalImage" src="images/hannibal.jpg" >
+       </div>
+  </div>
+  <div class="actions">
+       <div class="ui green ok inverted button">
+      <i class="checkmark icon"></i>
+      Done
+    </div>
+  </div>
+</div>
+
+ <!-- glossary modal template -->
+ <div class="ui modal small glossary">
+    <i class="close icon" onclick="toggleInfoModal()"></i>
+    <div class="header modalHeader">
+       Profile Picture
+    </div>
+    <div class="image content">
+        
+       <div class="ui medium image">
+           
+          <img class="modalImage" src="images/hannibal.jpg" onclick="$('.ui.basic.modal.image').modal('show');">
+          <br>
+          <center><p class="caption" ></p> </center>
+        </div>
+    
+    </div>
+       <div class="infoModalText">
+          <blockquote >
+             <b>
+                <p class="quote"> </p>
+             </b>
+             <div class="citation">
+                Me
+             </div>
+          </blockquote>
+          <div class="ui header">About</div>
+          <p class="short"> </p>
+          <p class="long"> </p>
+          <p class="anecdote"> </p>
+          <a class="reference" href="http://classics.oxfordre.com/view/10.1093/acrefore/9780199381135.001.0001/acrefore-9780199381135-e-3995?rskey=kJnKQO&result=1" target="_blank"> </a>
+       </div>
+    
+    <div class="actions">
+       <div class="ui positive right labeled icon button">
+          Finished
+          <i class="checkmark icon"></i>
+       </div>
+    </div>
+ </div>
+ <!-- glossary modal -->
+ <!-- info modal template -->
+ <div class="ui small modal info">
+    <i class="close icon" onclick="toggleInfoModal()"></i>
+    <div class="header modalHeader">
+       Profile Picture
+    </div>
+    <div class="image content">
+       <div class="ui medium image">
+          <img class="modalImage" src="images/hannibal.jpg" onclick="$('.ui.basic.modal.image').modal('show');">
+          <br>
+          <center><p class="caption" ></p> </center>
+        </div>
+    </div>
+       <div class="infoModalText">
+          <blockquote >
+             <b>
+                <p class="quote"> </p>
+             </b>
+             <div class="citation">
+                Me
+             </div>
+          </blockquote>
+          <div class="ui header">About</div>
+          <p class="short"> </p>
+          <p class="long"> </p>
+          <p class="anecdote"> </p>
+          <a class="reference" href="http://classics.oxfordre.com/view/10.1093/acrefore/9780199381135.001.0001/acrefore-9780199381135-e-3995?rskey=kJnKQO&result=1" target="_blank"> </a>
+       </div>
+    
+    <div class="actions">
+       <div class="ui positive right labeled icon button">
+          Finished
+          <i class="checkmark icon"></i>
+       </div>
+    </div>
+ </div>
+
+  <!-- map -->
+
+<!-- modal -->
+
+  <div class="ui basic modal start">
+    <div class="ui icon header">
+      <i class="map icon"></i>
+      Mapping Hannibal
+    </div>
+    <div class="content">
+      <p class="modalContent">
+        At the conclusion of the First Punic War the Carthaginians lost territory, gold, and several armies. They crucified their own generals in anger. A city once wealthy from trade, Carthage now had no money to pay its mercenaries. These mercenaries revolted, starting another brutal conflict that nearly saw Carthage destroyed. Only with the leadership of the general Hamilcar Barca did Carthage put down this revolt. While they were busy fighting their former soldiers, Rome took advantage of Carthage’s distraction to take the island of Sardinia from them. This visualization will track Hannibal from his youth up through his campaign in Italy and to his eventual defeat back in Africa.      </div>
+    <div class="actions">
+
+      <div class="ui green ok inverted button">
+        Begin
+        <i class="right arrow icon"></i>
+      </div>
+    </div>
+  </div>
+
+<!-- end of modal -->
+
+<!-- sidebar -->
+<div id="sidebar" class="leaflet-sidebar collapsed">
+      <!-- Nav tabs -->
+      <div class="leaflet-sidebar-tabs">
+          <ul role="tablist">
+              <li><a href="#home" role="tab"><i class="fa fa-bars active"></i></a></li>
+              <li><a href="#book" role="tab"><i class="fa fa-book"></i></a></li>
+              <li><a href="#contact" role="tab"><i class="fa fa-envelope"></i></a></li>
+              <li><a href="#information" role="tab"><i class="fa fa-info"></i></a></li>
+          </ul>
+
+          <ul role="tablist">
+              <li><a href="https://github.com/danielFrancisOlivieri/spw"><i class="fa fa-github"></i></a></li>
+          </ul>
+      </div>
+
+      <!-- Tab panes -->
+      <div class="leaflet-sidebar-content">
+          <div class="leaflet-sidebar-pane" id="home">
+              <h1 class="leaflet-sidebar-header">
+                  About
+                  <span class="leaflet-sidebar-close"><i class="fa fa-caret-left"></i></span>
+              </h1>
+              <br/>
+<div clas="ui text container">
+              <p>
+                The story of the Second Punic War has been told by everyone from Polybius to Livy to Mike Duncan.
+
+                This website exists to bring this ancient story into the modern world by letting you go on campagin with Hannibal across the Mediterranean.
+
+                It is the Mapping Ancient Text project's first attempt to tell a narrative through a map.
+
+              You can learn more about the MAT project <a href="http://mappingancienttexts.net/" target="_blank">here</a>.
+
+              If you are interested in how we created this website, you can find the source code right <a href="https://github.com/danielFrancisOlivieri/spw" target="_blank">here</a> on my Github account.
+              </p>
+</div>
+      </div>
+
+          <div class="leaflet-sidebar-pane" id="profile">
+              <h1 class="leaflet-sidebar-header">Profile<span class="leaflet-sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
+          </div>
+
+          <div class="leaflet-sidebar-pane" id="messages">
+              <h1 class="leaflet-sidebar-header">Messages<span class="leaflet-sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
+          </div>
+          <div class="leaflet-sidebar-pane" id="book">
+              <h1 class="leaflet-sidebar-header">Glossary<span class="leaflet-sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
+              <!-- accordian -->
+              <div class="ui styled accordion">
+                <div class="title">
+                  <i class="dropdown icon"></i>
+                  Historical Figures
+                </div>
+                <div class="content">
+
+                  <div class="ui segment"  onclick='openGlossaryModal(fabius)' data-tooltip='Click for more.'>
+                    <p>Fabius Maximus</p>
+                  </div>
+
+                    
+                  <div class="ui segment"  onclick='openGlossaryModal(flaminius)' data-tooltip='Click for more.'>
+                    <p>Gaius Flaminius</p>
+                  </div> 
+
+                  <div class="ui segment" onclick='openGlossaryModal(hamilcar)' data-tooltip='Click for more.'>
+                    <p>Hamilcar Barca</p>
+                  </div>
+
+                  <div class="ui segment" onclick='openGlossaryModal(hannibal)' data-tooltip='Click for more.'>
+                    <p>Hannibal Barca</p>
+                  </div>
+
+                  <div class="ui segment" onclick='openGlossaryModal(hasdrubal)' data-tooltip='Click for more.'>
+                    <p>Hasdrubal Barca</p>
+                  </div>
+
+                  <div class="ui segment" onclick='openGlossaryModal(massinissa)' data-tooltip='Click for more.'>
+                    <p>Massinissa</p>
+                  </div>
+
+                  <div class="ui segment" onclick='openGlossaryModal(polybius)' data-tooltip='Click for more.'>
+                    <p>Polybius</p>
+                  </div>
+
+                  <div class="ui segment" onclick='openGlossaryModal(scipioAfricanus)' data-tooltip='Click for more.'>
+                    <p>Scipio Africanus</p>
+                  </div>
+
+                  <div class="ui segment" onclick='openGlossaryModal(sibylline)' data-tooltip='Click for more.'>
+                    <p>Sibyl</p>
+                  </div>
+
+                  <div class="ui segment" onclick='openGlossaryModal(syphax)' data-tooltip='Click for more.'>
+                    <p>Syphax</p>
+                  </div>
+
+
+                </div>
+                <div class="title">
+                  <i class="dropdown icon"></i>
+                  Military Units
+                </div>
+                <div class="content">
+
+                  <div class="ui segment" onclick='openGlossaryModal(gallicWarriors)' data-tooltip='Click for more.'>
+                    <p>Gallic Warriors</p>
+                  </div>
+
+                  <div class="ui segment"  onclick='openGlossaryModal(hastati)' data-tooltip='Click for more.'>
+                    <p>Hastati</p>
+                  </div>
+
+                  <div class="ui segment"  onclick='openGlossaryModal(numidianCavalry)' data-tooltip='Click for more.'>
+                    <p>Numidan Cavalry</p>
+                  </div>
+
+                  <div class="ui segment"  onclick='openGlossaryModal(principes)' data-tooltip='Click for more.'>
+                    <p>Principes</p>
+                  </div>
+
+
+                  <div class="ui segment"  onclick='openGlossaryModal(triarii)' data-tooltip='Click for more.'>
+                    <p>Triarii</p>
+                  </div>
+
+                  <div class="ui segment"  onclick='openGlossaryModal(velites)' data-tooltip='Click for more.'>
+                    <p>Velites</p>
+                  </div>
+
+                  <div class="ui segment" onclick='openGlossaryModal(warElephants)' data-tooltip='Click for more.'>
+                    <p>War Elephants</p>
+                  </div>
+
+                </div>
+
+
+                <div class="title">
+                  <i class="dropdown icon"></i>
+                  Battles
+                </div>
+                <div class="content">
+
+                  <div class="ui segment"  onclick='openGlossaryModal(cannae)' data-tooltip='Click for more.'>
+                    <p>Cannae</p>
+                  </div>
+           
+                  <div class="ui segment"  onclick='openGlossaryModal(ilipa)' data-tooltip='Click for more.'>
+                    <p>Ilipa</p>
+                  </div>
+
+                  <div class="ui segment"  onclick='openGlossaryModal(trasimene)' data-tooltip='Click for more.'>
+                    <p>Trasimene</p>
+                  </div>
+
+                  <div class="ui segment"  onclick='openGlossaryModal(trebia)' data-tooltip='Click for more.'>
+                    <p>Trebia</p>
+                  </div>
+                  <!--
+                  <div class="ui segment"  onclick='openGlossaryModal(upperBaetis)' data-tooltip='Click for more.'>
+                    <p>Upper Baetis </p>
+                  </div> -->
+
+                  <div class="ui segment"  onclick='openGlossaryModal(zama)' data-tooltip='Click for more.'>
+                    <p>Zama</p>
+                  </div>
+
+
+                </div>
+              </div>
+
+          </div>
+
+<!-- CONTACT PAGE -->
+
+<div class="leaflet-sidebar-pane" id="contact">
+    <h1 class="leaflet-sidebar-header">
+        Contact
+        <span class="leaflet-sidebar-close"><i class="fa fa-caret-left"></i></span>
+    </h1>
+    <br/>
+<div clas="ui text container">
+    <p>
+      If you have thoughts, comments, or suggestions about this site please feel free to contact me at dfolivieri@gmail.com.
+    </p>
+</div>
+</div>
+
+<!-- INFORMATION PAGE -->
+
+<div class="leaflet-sidebar-pane" id="information">
+    <h1 class="leaflet-sidebar-header">
+        Information
+        <span class="leaflet-sidebar-close"><i class="fa fa-caret-left"></i></span>
+    </h1>
+    <br/>
+<div clas="ui text container">
+    <p>
+Here are some resources to help you learn more about Roman history:
+  </p>
+  <ul>
+    <li>
+       <a target="_blank" href="http://thehistoryofrome.typepad.com/">
+       The History of Rome Podcast
+       </a>
+    </li>
+    <li>
+       <a target="_blank" href="https://www.amazon.com/SPQR-History-Ancient-Mary-Beard/dp/1631492225" >
+       SPQR: A History of Ancient Rome
+       </a>
+    </li>
+    <li>
+       <a target="_blank" href="https://www.amazon.com/Punic-Wars-Adrian-Goldsworthy/dp/0304352845" >
+       The Punic Wars
+       </a>
+    </li>
+    <li>
+       <a target="_blank" href="https://www.amazon.com/Romans-Village-History-Earliest-Western/dp/0199730571/ref=sr_1_1?s=books&ie=UTF8&qid=1535360086&sr=1-1&keywords=rome+from+village+to+empire&dpID=61m3SVHO74L&preST=_SX218_BO1,204,203,200_QL40_&dpSrc=srch">
+       The Romans: From Village to Empire: A History of Rome from Earliest Times to the End of the Western Empire
+       </a>
+    </li>
+ </ul>
+
+
+</div>
+</div>
+
+
+      </div>
+  </div>
+
+
+
+     <div id="map"> </div>
+
+<div class="ui huge header"></div>
+
+<div class="ui grid equal width forMap">
+<div class="ui huge header date"></div>
+  <div class="column forMap">
+<center>
+    <button class="ui left labeled icon button forMap hidden" title='Click here to go back to the previous event!' data-content="This goes back!" onclick="previous()" id="back">
+      <i class="left arrow icon"></i>
+  <p>  Back </p>
+    </button>
+</center>
+  </div>
+  <div class="column forMap">
+
+    <div class="ui custom progress forMap" >
+      <div class="bar"></div>
+    </div>
+
+  </div>
+  <div class="column forMap">
+<center>
+    <button class="ui right labeled icon button forMap" title='This goes forward!' onclick="next()" id="forward">
+      <i class="right arrow icon"></i>
+    <p id="forwardText">  Start </p>
+    </button>
+</center>
+  </div>
+
+</div>
+
+
+    <!-- include cartodb.js library -->
+    <script src="javascript/carto.js"></script>
+
+    <!-- sidebar -->
+    <script src="javascript/leaflet-sidebar.js"></script>
+
+<script src="semantic/semantic.js"></script>
+<script src="data/glossary.js"></script>
+<script src="javascript/points.js"></script>
+
+</html>
